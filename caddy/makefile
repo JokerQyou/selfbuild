@@ -11,7 +11,7 @@ caddy:
 clean:
 	docker stop caddy_build > /dev/null 2>&1 || true && \
 	docker rm caddy_build >/dev/null 2>&1 || true && \
-	-rm -f caddy >/dev/null 2>&1 || true
+	rm -f caddy >/dev/null 2>&1 || true
 
 reset: clean
 	docker run --rm \
