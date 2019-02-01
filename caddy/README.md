@@ -13,8 +13,6 @@
 - `make clean` removes the `./caddy` binary from last build (if any), but
   preserve the source code cache. You should run this command if you want to
   try again after a failed build.
-removes `./go_src_cache` cache directory and the `./caddy` binary
-  from last build.
 - `make reset` reset all build state, thus removing `./go_src_cache` and
   `./caddy`. The next time you build, all source code will be fetched again.
 - `make install` installs all systemd service file for Caddy server to
