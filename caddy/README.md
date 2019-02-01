@@ -15,7 +15,7 @@
   try again after a failed build.
 - `make reset` reset all build state, thus removing `./go_src_cache` and
   `./caddy`. The next time you build, all source code will be fetched again.
-- `make install` installs all systemd service file for Caddy server to
+- `make install` installs a systemd service file for Caddy server to
   `/etc/systemd/system/caddy.service`. Use with caution. It is only tested on
   AMD64 Linux platform. You might also want to modify the installed service file
   to add your own customizations.
