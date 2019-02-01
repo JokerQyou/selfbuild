@@ -21,3 +21,9 @@ removes `./go_src_cache` cache directory and the `./caddy` binary
   `/etc/systemd/system/caddy.service`. Use with caution. It is only tested on
   AMD64 Linux platform. You might also want to modify the installed service file
   to add your own customizations.
+
+## Plugins
+
+Edit `plugins.txt` to add plugins. Put golang package URL at each line, and
+ they will be fetched and built into Caddy.
+
