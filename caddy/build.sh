@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
-
-if [ -d $GOPATH/src/github.com/mholt/caddy/caddy/caddymain ]; then
-    echo 'Reverting last build state...'
-    cd $GOPATH/src/github.com/mholt/caddy/caddy/caddymain && \
-    git checkout run.go || true
-fi
+CADDY_VERSION=v0.11.5
 
 # Fetch Caddy server source code
 echo 'Fetching source code...'
 go get github.com/mholt/caddy/caddy
 go get github.com/caddyserver/builds
+
+if [ -d $GOPATH/src/github.com/mholt/caddy/caddy/caddymain ]; then
+    echo 'Reverting last build state...'
+    cd $GOPATH/src/github.com/mholt/caddy/caddy/caddymain && \
+    git checkout run.go || true
+    echo "Checking out caddy@$CADDY_VERSION..."
+    cd $GOPATH/src/github.com/mholt/caddy/caddy && \
+    git fetch --tags --force && \
+    git checkout $CADDY_VERSION
+fi
 
 # Turn off telemetry by modifying source code
 echo 'Turning off telemetry...'
