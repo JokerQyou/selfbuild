@@ -2,7 +2,7 @@ install_to = /usr/local/bin/caddy
 runner = $(shell whoami)
 
 caddy:
-	docker run --name=caddy_build \
+	docker run --name=caddy_build -it \
 		-v $(shell pwd):/tmp/caddy_build \
 		-v $(shell pwd)/go_src_cache:/go/src \
 		golang:1-stretch \
