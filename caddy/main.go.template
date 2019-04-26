@@ -1,0 +1,13 @@
+package main
+
+import (
+	"github.com/mholt/caddy/caddy/caddymain"
+//CADDY_PLUGINS
+)
+
+func main() {
+	// Disable Telemetry
+	caddymain.EnableTelemetry = false
+	caddymain.Run()
+}
+
