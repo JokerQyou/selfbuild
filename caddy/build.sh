@@ -23,15 +23,15 @@ cat $CWD/main.go
 
 # Build Caddy server
 echo 'Init modules...'
-[[ -f "go.mod" ]] && rm go.mod
-[[ -f "go.sum" ]] && rm go.sum
 go mod init caddy
 echo 'Building...'
-go build
-
-# Remove used main module source code file
-rm main.go
+# Behold, we want a statically-linked binary, thus these messy options
+CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"'
 
 # Copy build result to mounted volume
 cp caddy /tmp/caddy_build
+
+# Remove the build directory
+rm -rf $CWD
+
 echo 'Done.'
