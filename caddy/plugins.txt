@@ -4,3 +4,4 @@ github.com/epicagency/caddy-expires
 github.com/abiosoft/caddy-git
 github.com/hacdias/caddy-minify
 github.com/caddyserver/dnsproviders/cloudflare
+github.com/miekg/caddy-prometheus
