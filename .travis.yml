@@ -1,0 +1,28 @@
+language: minimal
+
+services:
+    - docker
+
+script:
+    - docker pull abiosoft/caddy:builder
+    - >-
+        docker run --rm
+        -v $(pwd):/install
+        -e PLUGINS=$CADDY_PLUGINS
+        -e VERSION=1.0.3
+        -e ENABLE_TELEMETRY=false
+        -e GOOS=linux -e GOARCH=amd64
+        abiosoft/caddy:builder
+    - sha256sum caddy > caddy.sha256
+
+deploy:
+    provider: releases
+    api_key:
+        secure: P2/sIChz3Cs97+oW0SrsSC80TLsqFmP4jE/G7ztS2L60fvOX5ec25r9l7sDP5gyPCbhoDCx6bh32RUxzghsWdYHh8GgWHGOeJOPeNWjwqllB44HCa/K63+4ThQ7LCVY9HBZiwQFW3uh/nth8Y5wqCAMdCowU/DSIlbYfGw3S83Cdp4os0s7XuMP5XiLmeGPktZUrmW7OferKJVO2zU1Dw+xMzfHPtg/sgz+fb5tDNAwvbG2VbxFcYvhsb7rLRb5XowW0fww07stNfd6bKnMcwIZZNNIfTrRuVySC24QVNtHxGNZwfHGNhlzpl/Ch25ln237OvwwAGaqFSLey01JGAziNhIGCPGH38KJX+RSXYVscKOLUYFTTEz5Cx6FtKtKlFWWxchkhENhfpk72h/DEPaq6CqIWultcDL/qOCuwl+endPPIsGQ+H2O2PRWd+aP/i1Wgvtko4zxIE0QiULbVdgiLTQn35oGDq317MWHpcDg8txqrUQyeec7XPYzuG48NlrAJ1i73prFpQhwfueL/jWu3dEAylgenOgILnucLLN7Fo/kA3UvNG+WfItdKNLRKSlkLHv3dM3NC2GxxuLxRq/Rr8rFRgFtMMARXNrJ+pK1oh0lcT3byjrtcWiDNeG+Ck/JADcTBbR/IiZnCfk5ag/XaYC20jDmkISlmcNZsgVQ=
+    file:
+        - caddy
+        - caddy.sha256
+    skip_cleanup: true
+    on:
+        tags: true
+

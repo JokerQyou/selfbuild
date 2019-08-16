@@ -1,0 +1,3 @@
+[submodule "caddy-docker"]
+	path = caddy-docker
+	url = https://github.com/abiosoft/caddy-docker.git
