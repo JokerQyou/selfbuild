@@ -3,6 +3,9 @@ language: minimal
 services:
     - docker
 
+env:
+    - CADDY_PLUGINS=cache,cors,expires,git,minify,cloudflare,prometheus
+
 before_install:
     - mkdir build
 
